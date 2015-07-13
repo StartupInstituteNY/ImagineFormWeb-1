@@ -25,14 +25,12 @@ gem 'devise', '~> 3.5.1'
 gem 'paperclip', '~> 4.2'
 
 group :development, :test do
-	# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
-gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', '~> 2.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring'
+	gem 'sqlite3'
+	gem 'byebug'
+	gem 'web-console', '~> 2.0'
+	gem 'spring'
+	gem 'xray-rails'
+	gem 'pry'
 end
 
 group :production do

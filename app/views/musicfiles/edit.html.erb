@@ -1,6 +1,9 @@
-<h1>Editing Musicfile</h1>
+<h1>Editing Music File</h1>
 
-<%= render 'form' %>
+
+<%= @musicfile.description %>
+
+<%= render 'form', file: @musicfile %>
 
 <%= link_to 'Show', @musicfile %> |
 <%= link_to 'Back', musicfiles_path %>

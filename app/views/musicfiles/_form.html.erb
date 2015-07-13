@@ -1,7 +1,7 @@
-<%= form_for(@musicfile) do |f| %>
+<%= form_for @musicfile, html: { multipart: true } do |f| %>
   <% if @musicfile.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@musicfile.errors.count, "error") %> prohibited this musicfile from being saved:</h2>
+      <h2><%= pluralize(musicfile.errors.count, "error") %> prohibited this musicfile from being saved:</h2>
 
       <ul>
       <% @musicfile.errors.full_messages.each do |message| %>
@@ -10,6 +10,11 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="form-group">
+    <%= f.label :audio %><br>
+    <%= f.file_field :audio, class: "form-control" %>
+  </div>
 
   <div class="form-group">
     <%= f.label :description %><br>

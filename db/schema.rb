@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713131758) do
+ActiveRecord::Schema.define(version: 20150713163607) do
 
   create_table "musicfiles", force: :cascade do |t|
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "user_id"
+    t.string   "music_file_name"
+    t.string   "music_content_type"
+    t.integer  "music_file_size"
+    t.datetime "music_updated_at"
+    t.string   "audio_file_name"
+    t.string   "audio_content_type"
+    t.integer  "audio_file_size"
+    t.datetime "audio_updated_at"
   end
 
   add_index "musicfiles", ["user_id"], name: "index_musicfiles_on_user_id"
