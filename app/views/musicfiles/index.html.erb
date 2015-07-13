@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Music Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @musicfiles.each do |musicfile| %>
+      <tr>
+        <td><%= musicfile.description %></td>
+        <td><%= link_to 'Show', musicfile %></td>
+        <td><%= link_to 'Edit', edit_musicfile_path(musicfile) %></td>
+        <td><%= link_to 'Destroy', musicfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Music File', new_musicfile_path %>
