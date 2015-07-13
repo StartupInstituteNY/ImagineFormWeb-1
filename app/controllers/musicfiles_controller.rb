@@ -1,6 +1,7 @@
 class MusicfilesController < ApplicationController
   before_action :set_musicfile, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
   def index
     @musicfiles = Musicfile.all
   end
@@ -10,7 +11,7 @@ class MusicfilesController < ApplicationController
   end
 
   def new
-    @musicfile = Musicfile.new
+    @musicfile = current_user.musicfiles.build
   end
 
 
@@ -18,15 +19,13 @@ class MusicfilesController < ApplicationController
   end
 
   def create
-    @musicfile = Musicfile.new(musicfile_params)
+    @musicfile = current_user.musicfiles.build(musicfile_params)
 
-    respond_to do |format|
+   # respond_to do |format|
       if @musicfile.save
-        format.html { redirect_to @musicfile, notice: 'Music File was successfully created.' }
-        format.json { render :show, status: :created, location: @musicfile }
+        redirect_to @musicfile, notice: 'Music File was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @musicfile.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
@@ -34,25 +33,18 @@ class MusicfilesController < ApplicationController
   # PATCH/PUT /musicfiles/1
   # PATCH/PUT /musicfiles/1.json
   def update
-    respond_to do |format|
       if @musicfile.update(musicfile_params)
-        format.html { redirect_to @musicfile, notice: 'Music File was successfully updated.' }
-        format.json { render :show, status: :ok, location: @musicfile }
+        redirect_to @musicfile, notice: 'Music File was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @musicfile.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
-  end
 
 
   def destroy
     @musicfile.destroy
-    respond_to do |format|
-      format.html { redirect_to musicfiles_url, notice: 'Music File was successfully destroyed.' }
-      format.json { head :no_content }
+      redirect_to musicfiles_url, notice: 'Music File was successfully destroyed.'
     end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -60,8 +52,12 @@ class MusicfilesController < ApplicationController
       @musicfile = Musicfile.find(params[:id])
     end
 
+    def correct_user
+      @musicfile = current_user.musicfiles.find_by(params[:id])
+      redirect_to musicfiles_path, notice: "Not authorized to edit this file" if @musicfile.nil?
+    end 
     # Never trust parameters from the scary internet, only allow the white list through.
     def musicfile_params
       params.require(:musicfile).permit(:description)
     end
-end
+
