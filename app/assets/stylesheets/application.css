@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui/draggable
+ *= require jquery-ui/resizable
+ *= require jquery-ui/selectable
+ *= require jquery-ui/sortable
  */
