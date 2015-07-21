@@ -22,7 +22,7 @@
         <td><%= musicfile.user.email if musicfile.user%></td>
         <td><%= link_to 'Show', musicfile %></td>
         <% if musicfile.user == current_user %>
-          <td><%= musicfile.audio_file_name %><td>
+          <td><%= musicfile.music_file_name %><td>
           <td><%= link_to 'Edit', edit_musicfile_path(musicfile) %></td>
           <td><%= link_to 'Destroy', musicfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
