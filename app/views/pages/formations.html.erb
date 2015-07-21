@@ -5,11 +5,27 @@
 <body style= "background-color: #81CFE0">
 
 <style>
-#background {width: 100px; height: 100px; background:black}
+#draggableElement{
+	width: 50px; 
+	height: 50px; 
+	background:white; 
+	border-radius: 50%
+}
 
-#draggableElement {width: 50px; height: 50px; background:white; border-radius: 50%}
+#draggableElement2 {
+	width: 50px; 
+	height: 50px; 
+	background:black; 
+	border-radius: 50%
+}
 
-#draggableElement2 {width: 50px; height: 50px; background:white; border-radius: 50%}
+#background {
+	width: 600px; 
+	height: 500px; 
+	background:white; 
+	display: block;
+	margin: 0 auto;
+}
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
@@ -19,9 +35,9 @@
 $( init );
 
 function init() {
+  $('#background').draggable();
   $('#draggableElement').draggable();
   $('#draggableElement2').draggable();
-  $('#background').draggable();
 }
 
 </script>
